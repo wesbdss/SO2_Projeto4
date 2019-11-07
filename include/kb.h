@@ -16,7 +16,6 @@ string readStr()
 			switch(inportb(0x60))
 			{
 			case 1:
-
 				printch((char)27);
 				buffstr[i] =(char)27;
 				i++;
@@ -168,75 +167,92 @@ string readStr()
 				buffstr[i] =(char)93;
 				i++;
 				break;
+
 			case 28:
 				printch((char)13);
 				buffstr[i] =(char)13;
 				i++;
+				reading = 0;
 				break;
+
 			case 29:
 				break;
+
 			case 30:
 				printch((char)97);
 				buffstr[i] =(char)97;
 				i++;
 				break;
+
 			case 31:
 				printch((char)115);
 				buffstr[i] =(char)115;
 				i++;
 				break;
+
 			case 32:
 				printch((char)100);
 				buffstr[i] =(char)100;
 				i++;
 				break;
+
 			case 33:
 				printch((char)102);
 				buffstr[i] =(char)102;
 				i++;
 				break;
+
 			case 34:
 				printch((char)103);
 				buffstr[i] =(char)103;
 				i++;
 				break;
+
 			case 35:
 				printch((char)104);
 				buffstr[i] =(char)104;
 				i++;
 				break;
+
 			case 36:
 				printch((char)106);
 				buffstr[i] =(char)106;
 				i++;
 				break;
+
 			case 37:
 				printch((char)107);
 				buffstr[i] =(char)107;
 				i++;
 				break;
+
 			case 38:
 				printch((char)108);
 				buffstr[i] =(char)108;
 				i++;
 				break;
+
 			case 39:
 				printch((char)59);
 				buffstr[i] =(char)59;
 				i++;
 				break;
+
 			case 40:
 				printch((char)39);
 				buffstr[i] =(char)39;
 				i++;
 				break;
+
 			case 41:
 				printch((char)96);
 				buffstr[i] =(char)96;
 				i++;
 				break;
+
 			case 42:
 				break;
+
 			case 43:
 				printch((char)92);
 				buffstr[i] =(char)92;
@@ -247,41 +263,49 @@ string readStr()
 				buffstr[i] =(char)122;
 				i++;
 				break;
+
 			case 45:
 				printch((char)120);
 				buffstr[i] =(char)120;
 				i++;
 				break;
+
 			case 46:
 				printch((char)99);
 				buffstr[i] =(char)99;
 				i++;
 				break;
+
 			case 47:
 				printch((char)118);
 				buffstr[i] =(char)118;
 				i++;
 				break;
+
 			case 48:
 				printch((char)98);
 				buffstr[i] =(char)98;
 				i++;
 				break;
+
 			case 49:
 				printch((char)110);
 				buffstr[i] =(char)110;
 				i++;
 				break;
+
 			case 50:
 				printch((char)109);
 				buffstr[i] =(char)109;
 				i++;
 				break;
+
 			case 51:
 				printch((char)44);
 				buffstr[i] =(char)44;
 				i++;
 				break;
+
 			case 52:
 				printch((char)46);
 				buffstr[i] =(char)46;
