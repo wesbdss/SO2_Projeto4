@@ -1,2 +1,3 @@
-bash ./build.sh
-qemu-system-i386 --kernel kernel.bin
+wsl make
+qemu-system-i386 --kernel B.OS/boot/kernel.bin
+wsl make clean
