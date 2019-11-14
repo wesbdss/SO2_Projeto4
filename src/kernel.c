@@ -1,4 +1,4 @@
-#include "../include/screen.h"
+//#include "../include/screen.h"
 kmain()
 {
 	char *vidmem = (char*) 0xb8000;

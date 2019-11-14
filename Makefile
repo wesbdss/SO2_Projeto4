@@ -6,30 +6,38 @@ ASFLAGS = -f elf32
 LDFLAGS = -m elf_i386 -T src/link.ld
 EMULATOR = qemu-system-i386
 EMULATOR_FLAGS = -kernel
-SRCS = src/kernel.asm src/kernel.c src/idt.c src/isr.c src/util.c
-OBJS = obj/kasm.o obj/kc.o obj/idt.o obj/isr.o obj/util.o
+SRCS = src/kernel.asm src/kernel.c src/idt.c src/isr.c src/kb.c src/screen.c src/string.c src/system.c src/util.c
+OBJS = obj/kasm.o obj/kc.o obj/idt.o obj/isr.o obj/kb.o obj/screen.o obj/string.o obj/system.o obj/util.o
 OUTPUT = B.OS/boot/kernel.bin
-# run: link 
-# 	$(EMULATOR) $(EMULATOR_FLAGS) $(OUTPUT) qemu-system-i386 --kernel B.OS/boot/kernel.bin
-
 run: link
 
+	#$(EMULATOR) $(EMULATOR_FLAGS) $(OUTPUT)
 link: compile $(OBJS)
 	rm -rf B.OS
 	mkdir B.OS
 	mkdir B.OS/boot
-	$(LINKER) $(LDFLAGS) -o $(OUTPUT) obj/kasm.o obj/kc.o
+	$(LINKER) $(LDFLAGS) -o $(OUTPUT) $(OBJS)
+
 compile: $(SRCS)
 	rm obj/ -rf
 	mkdir obj/
+
 obj/kasm.o: src/kernel.asm
-	$(ASSEMBLER) $(ASFLAGS) -o obj/kasm.o src/kernel.asm
+	$(ASSEMBLER) $(ASFLAGS) src/kernel.asm -o obj/kasm.o 
 obj/kc.o: src/kernel.c
 	$(COMPILER) $(CFLAGS) src/kernel.c -o obj/kc.o
 obj/idt.o: src/idt.c
 	$(COMPILER) $(CFLAGS) src/idt.c -o obj/idt.o
+obj/kb.o: src/kb.c
+	$(COMPILER) $(CFLAGS) src/kb.c -o obj/kb.o
 obj/isr.o: src/isr.c
 	$(COMPILER) $(CFLAGS) src/isr.c -o obj/isr.o
+obj/screen.o: src/screen.c
+	$(COMPILER) $(CFLAGS) src/screen.c -o obj/screen.o
+obj/string.o: src/string.c
+	$(COMPILER) $(CFLAGS) src/string.c -o obj/string.o
+obj/system.o: src/system.c
+	$(COMPILER) $(CFLAGS) src/system.c -o obj/system.o
 obj/util.o: src/util.c
 	$(COMPILER) $(CFLAGS) src/util.c -o obj/util.o
 build:
@@ -47,7 +55,6 @@ build:
 	grub-mkrescue -o B.OS.iso B.OS/
 
 all: run build
-
 clean:
 	rm -rf obj/
 	rm -rf B.OS/
