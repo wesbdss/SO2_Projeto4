@@ -6,8 +6,8 @@ ASFLAGS = -f elf32
 LDFLAGS = -m elf_i386 -T src/link.ld
 EMULATOR = qemu-system-i386
 EMULATOR_FLAGS = -kernel
-SRCS = src/kernel.asm src/kernel.c src/idt.c src/isr.c src/kb.c src/screen.c src/string.c src/system.c src/util.c
-OBJS = obj/kasm.o obj/kc.o obj/idt.o obj/isr.o obj/kb.o obj/screen.o obj/string.o obj/system.o obj/util.o
+SRCS = src/kernel.asm src/kernel.c src/idt.c src/isr.c src/kb.c src/screen.c src/string.c src/system.c src/util.c src/shell.c
+OBJS = obj/kasm.o obj/kc.o obj/idt.o obj/isr.o obj/kb.o obj/screen.o obj/string.o obj/system.o obj/util.o obj/shell.o
 OUTPUT = B.OS/boot/kernel.bin
 run: link
 
@@ -40,6 +40,8 @@ obj/system.o: src/system.c
 	$(COMPILER) $(CFLAGS) src/system.c -o obj/system.o
 obj/util.o: src/util.c
 	$(COMPILER) $(CFLAGS) src/util.c -o obj/util.o
+obj/shell.o: src/shell.c
+	$(COMPILER) $(CFLAGS) src/shell.c -o obj/shell.o
 build:
 # Activate the install xorr if you do not have it already installed
 # sudo apt install xorriso

@@ -1,5 +1,10 @@
 #include "../include/screen.h"
 
+
+
+
+// usada no terminal
+
 void clearLine(uint8 from, uint8 to)
 {
 	uint16 i = sw * from * sd;
@@ -12,6 +17,12 @@ void clearLine(uint8 from, uint8 to)
 		// 	vidmem[i+1] = color+0x01;
 		// else
 		// 	color = 0x01;
+	}
+
+	for (i; i < (sw * to * sd); i++) // NOVO
+	{
+		vidmem[(i/2)*2+1] = color; // NOVO: referente a cor
+		vidmem[(i/2)*2] = 0; // NOVO: referente ao caractere
 	}
 }
 
@@ -114,4 +125,18 @@ void print(string ch)
 	{
 		printch(ch[i]);
 	}
+}
+
+void set_screen_color(int text_color, int bg_color) {
+	color = (bg_color << 4) | text_color;
+}
+
+void set_screen_color_from_color_code(int color_code) {
+	color = color_code;
+}
+void print_colored(string ch, int text_color, int bg_color) {
+	int current_color = color;
+	set_screen_color(text_color, bg_color);
+	print(ch);
+	set_screen_color_from_color_code(current_color);
 }
