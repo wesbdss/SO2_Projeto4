@@ -7,7 +7,8 @@ void launch_shell(int n) {
 		print("B.OS (");
 		print(int_to_string(n));
 		print(")>");
-	ch = readStr(); // memory_copy(readStr(), ch, 100);
+	//ch = readStr();
+	memory_copy(readStr(), ch, 100);
 	if(strEql(ch, "cmd")) {
 		print("\nVoce ja esta no cmd. Novo shell recursivo aberto\n");
 		launch_shell(n+1);
@@ -30,6 +31,12 @@ void launch_shell(int n) {
 		set_bg_color();
 	else {
 		print("\nComando desconhecido\n");
+		print("\n");
+		print(ch);
+		print("\n");
+		print(" -->");
+		print(int_to_string(strEql(ch,"exit")));
+		print("\n");
 	}
 } while(!strEql(ch,"exit"));
 }

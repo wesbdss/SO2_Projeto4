@@ -1,8 +1,5 @@
 #include "../include/screen.h"
 
-
-
-
 // usada no terminal
 
 void clearLine(uint8 from, uint8 to)

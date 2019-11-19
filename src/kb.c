@@ -174,7 +174,7 @@ string readStr()
 
 			case 28:
 				printch((char)13);
-				buffstr[i] =(char)13;
+				buffstr[i] ='\0';
 				i++;
 				reading = 0;
 				break;
